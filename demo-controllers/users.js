@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
-const Users = require("../model/users");
+const Users = require("../demo-model/users");
 const fs = require("fs/promises");
 const path = require("path");
 const Jimp = require("jimp");
 const { v4: uuidv4 } = require("uuid");
-const checkOrMakeFolder = require("../helpers/create-dir");
-const { HttpCode, Status } = require("../helpers/constants");
-const EmailService = require("../services/email");
+const checkOrMakeFolder = require("../demo-helpers/create-dir");
+const { HttpCode, Status } = require("../demo-helpers/constants");
+const EmailService = require("../demo-services/email");
 require("dotenv").config();
 
 const SECRET_KEY = process.env.JWT_SECRET;
@@ -36,7 +36,7 @@ const reg = async ({ body }, res, next) => {
       message: "user created",
       user: {
         email: newUser.email,
-        subscription: newUser.subscription,
+        // subscription: newUser.subscription,
         avatar: newUser.avatar,
       },
     });
@@ -75,7 +75,7 @@ const login = async ({ body }, res, next) => {
         user: {
           email: user.email,
           avatar: user.avatar,
-          subscription: user.subscription,
+          // subscription: user.subscription,
         },
       },
     });
@@ -115,7 +115,7 @@ const current = async ({ user }, res, next) => {
       status: Status.SUCCESS,
       code: HttpCode.OK,
       email: currentUser.email,
-      subscription: currentUser.subscription,
+      // subscription: currentUser.subscription,
       avatar: currentUser.avatar,
     });
   } catch (e) {
@@ -123,22 +123,22 @@ const current = async ({ user }, res, next) => {
   }
 };
 
-const updateSubscription = async ({ user, body }, res, next) => {
-  try {
-    await Users.updateUserSubscription(user.id, body.subscription);
-    const updatedUser = await Users.findById(user._id);
-    return res.status(HttpCode.OK).json({
-      status: Status.SUCCESS,
-      code: HttpCode.OK,
-      user: {
-        email: updatedUser.email,
-        subscription: updatedUser.subscription,
-      },
-    });
-  } catch (e) {
-    next(e);
-  }
-};
+// const updateSubscription = async ({ user, body }, res, next) => {
+//   try {
+//     await Users.updateUserSubscription(user.id, body.subscription);
+//     const updatedUser = await Users.findById(user._id);
+//     return res.status(HttpCode.OK).json({
+//       status: Status.SUCCESS,
+//       code: HttpCode.OK,
+//       user: {
+//         email: updatedUser.email,
+//         // subscription: updatedUser.subscription,
+//       },
+//     });
+//   } catch (e) {
+//     next(e);
+//   }
+// };
 
 const avatars = async (req, res, next) => {
   try {
@@ -205,7 +205,7 @@ module.exports = {
   login,
   logout,
   current,
-  updateSubscription,
+  // updateSubscription,
   avatars,
   verifyToken,
 };
