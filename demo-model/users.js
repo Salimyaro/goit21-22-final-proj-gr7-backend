@@ -27,9 +27,9 @@ const updateVerifyToken = async (id, verify, verificationToken) => {
   );
 };
 
-const updateUserSubscription = async (id, subscription) => {
-  return await User.updateOne({ _id: id }, { subscription });
-};
+// const updateUserSubscription = async (id, subscription) => {
+//   return await User.updateOne({ _id: id }, { subscription });
+// };
 
 const updateAvatarUrl = async (id, avatar) => {
   return await User.updateOne({ _id: id }, { avatar });
@@ -42,6 +42,6 @@ module.exports = {
   create,
   updateToken,
   updateVerifyToken,
-  updateUserSubscription,
+  // updateUserSubscription,
   updateAvatarUrl,
 };

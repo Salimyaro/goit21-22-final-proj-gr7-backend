@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const gravatar = require("gravatar");
 
-const { Subscription } = require("../../demo-helpers/constants");
+// const { Subscription } = require("../../demo-helpers/constants");
 
 const SALT_WORK_FACTOR = 8;
 
@@ -23,11 +23,11 @@ const userSchema = new Schema(
       maxlength: 30,
       required: [true, "Password required"],
     },
-    subscription: {
-      type: String,
-      enum: [Subscription.FREE, Subscription.PRO, Subscription.PREMIUM],
-      default: Subscription.FREE,
-    },
+    // subscription: {
+    //   type: String,
+    //   enum: [Subscription.FREE, Subscription.PRO, Subscription.PREMIUM],
+    //   default: Subscription.FREE,
+    // },
     avatar: {
       type: String,
       default: function () {
