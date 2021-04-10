@@ -2,7 +2,7 @@ const Mailgen = require("mailgen");
 const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
-const config = require("../demo-config/email.json");
+const config = require("../config/email.json");
 
 class EmailService {
   #sender = sgMail;

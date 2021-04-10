@@ -7,8 +7,7 @@ const PORT = process.env.PORT || 1313;
 
 db.then(() => {
   app.listen(PORT, async () => {
-    // await checkOrMakeFolder(process.env.UPLOAD_DIR);
-    // await checkOrMakeFolder(process.env.USERS_AVATARS_DIR);
+
     console.log(`Server running. Use our API on port: ${PORT}`);
   });
 }).catch((err) => {
