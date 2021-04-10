@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const userController = require("../../../demo-controllers/users");
-const guard = require("../../../demo-helpers/guard");
-const upload = require("../../../demo-helpers/upload");
+const userController = require("../../../controllers/users");
+const guard = require("../../../helpers/guard");
+const upload = require("../../../helpers/upload");
 const validate = require("./validation");
 const {
   createAccountLimiter,
-} = require("../../../demo-helpers/rate-limit-reg");
+} = require("../../../helpers/rate-limit-reg");
 
 router.post(
   "/auth/register",
@@ -29,4 +29,8 @@ router.patch(
   userController.avatars
 );
 router.get("/auth/verify/:verificationToken", userController.verifyToken);
+
+router.get("/google", userController.googleAuth);
+
+router.get("/google-redirect", userController.googleRedirect);
 module.exports = router;

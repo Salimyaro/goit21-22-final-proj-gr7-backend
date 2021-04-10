@@ -23,11 +23,7 @@ const userSchema = new Schema(
       maxlength: 30,
       required: [true, "Password required"],
     },
-    // subscription: {
-    //   type: String,
-    //   enum: [Subscription.FREE, Subscription.PRO, Subscription.PREMIUM],
-    //   default: Subscription.FREE,
-    // },
+  
     avatar: {
       type: String,
       default: function () {

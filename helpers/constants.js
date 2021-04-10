@@ -1,9 +1,3 @@
-const Subscription = {
-  FREE: "free",
-  PRO: "pro",
-  PREMIUM: "premium",
-};
-
 const HttpCode = {
   OK: 200,
   CREATED: 201,

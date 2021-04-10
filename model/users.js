@@ -7,12 +7,25 @@ const findByEmail = async (email) => {
 const findById = async (id) => {
   return await User.findOne({ _id: id });
 };
+
+const findByToken = async (token) => {
+  return await User.findOne({ token });
+};
+
+
 const findByVerificationToken = async (verificationToken) => {
   return await User.findOne({ verificationToken });
 };
 
 const create = async ({ email, password, verify, verificationToken }) => {
   const user = new User({ email, password, verify, verificationToken });
+  return await user.save();
+};
+
+
+const createViaGoogle = async (email) => {
+  const user = new User({ email });
+
   return await user.save();
 };
 
@@ -27,9 +40,6 @@ const updateVerifyToken = async (id, verify, verificationToken) => {
   );
 };
 
-// const updateUserSubscription = async (id, subscription) => {
-//   return await User.updateOne({ _id: id }, { subscription });
-// };
 
 const updateAvatarUrl = async (id, avatar) => {
   return await User.updateOne({ _id: id }, { avatar });
@@ -38,8 +48,10 @@ const updateAvatarUrl = async (id, avatar) => {
 module.exports = {
   findByEmail,
   findById,
+  findByToken,
   findByVerificationToken,
   create,
+  createViaGoogle,
   updateToken,
   updateVerifyToken,
   // updateUserSubscription,

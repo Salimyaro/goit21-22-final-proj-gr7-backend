@@ -4,9 +4,11 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 // const path = require("path");
-// const contactsRouter = require("./routes/api/contacts");
-const usersRouter = require("./demo-routes/api/users");
-const { HttpCode, Status } = require("./demo-helpers/constants");
+
+const usersRouter = require("./routes/api/users");
+const userInfoRouter = require("./routes/api/userInfo")
+
+const { HttpCode, Status } = require("./helpers/constants");
 require("dotenv").config();
 
 const app = express();
@@ -37,7 +39,7 @@ const apiLimiter = rateLimit({
 
 app.use("/", apiLimiter);
 app.use("/users", usersRouter);
-// app.use("/api/contacts", contactsRouter);
+app.use("/users", userInfoRouter);
 
 app.use((_req, res) => {
   res.status(HttpCode.NOT_FOUND).json({ message: "Not found" });
